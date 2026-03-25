@@ -1562,6 +1562,7 @@ def slot_insights():
             WHERE gym_id=%s
             AND booking_date=%s
             AND time_slot=%s
+            AND booking_status != 'cancelled'
         """, (gym_id, selected_date, slot_time))
         total_bookings = cur.fetchone()[0]
 
@@ -1572,6 +1573,7 @@ def slot_insights():
             WHERE gym_id=%s
             AND booking_date=%s
             AND time_slot=%s
+            AND booking_status != 'cancelled'
             AND workout_type NOT LIKE '%%+%%'
             GROUP BY workout_type
         """, (gym_id, selected_date, slot_time))
@@ -1584,6 +1586,7 @@ def slot_insights():
             WHERE gym_id=%s
             AND booking_date=%s
             AND time_slot=%s
+            AND booking_status != 'cancelled'
             AND workout_type LIKE '%%+%%'
             GROUP BY workout_type
         """, (gym_id, selected_date, slot_time))
